@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-    background: url('silueta.jpg') no-repeat center center fixed;
+    background: url('image/silueta.jpg') no-repeat center center fixed;
     background-size: contain;
     display: block;
     position: relative;
