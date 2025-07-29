@@ -1,6 +1,8 @@
 var cuadrado = document.getElementById("cuadradoCadera");
 var numero = document.getElementById("numeroFlotante");
 var mostrandoNumero = false;
+let contador = 0;
+const maxRepeticiones = 30; // Número máximo de veces que se mostrará el número
 
 function actualizarNumero() {
     mostrandoNumero = !mostrandoNumero;
@@ -14,7 +16,13 @@ function actualizarNumero() {
     numero.style.display = "none";
     cuadrado.style.display = "block";
     }
+    contador++;
+
+    if (contador >= maxRepeticiones) {
+    clearInterval(intervalo); // Detiene el setInterval después de 30 repeticiones
+    }
 }
 
 actualizarNumero();
-setInterval(actualizarNumero, 2000);
+// Ejecutar cada 2 segundos
+const intervalo = setInterval(actualizarNumero, 2000);

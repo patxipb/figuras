@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-    background: url('image/silueta.jpg') no-repeat center center fixed;
+    background: url('../image/silueta.jpg') no-repeat center center fixed;
     background-size: contain;
     display: block;
     position: relative;
@@ -23,7 +23,7 @@ body {
     width: 140px;
     height: 90px;
     top: 50%;
-    left: 51%;
+    left: 51.85%;
     margin-left: -75px; /* 50% del ancho */
     margin-top: -50px;  /* 50% de la altura */
     background-color: green;
@@ -31,14 +31,15 @@ body {
     border-radius: 8px;
     -ms-transition: background-color 0.5s ease; /* IE10 transition */
     transition: background-color 0.5s ease;
+    /* display: none; */
 }
 
 .numero-flotante {
     position: absolute;
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 90px;
     top: 49%;
-    left: 51%;
+    left: 51.85%;
     margin-left: -75px;
     margin-top: -50px;
     font-size: 60px;
@@ -49,5 +50,5 @@ body {
     user-select: none;
     -ms-user-select: none;
     pointer-events: none;
-    display: none;
+    /* display: none; */
 }
