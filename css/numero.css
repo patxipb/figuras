@@ -52,3 +52,21 @@ body {
     pointer-events: none;
     /* display: none; */
 }
+
+.boton-inicio {
+    position: fixed;
+    bottom: 20px; /* Distancia desde la parte inferior */
+    right: 20px;  /* Distancia desde el borde derecho */
+z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.boton-inicio img {
+    width: 50px;      /* Ajusta el tamaño del ícono */
+    height: auto;
+    cursor: pointer;
+transition: transform 0.2s;
+}
+
+.boton-inicio img:hover {
+    transform: scale(1.1); /* Pequeño efecto al pasar el mouse */
+}
