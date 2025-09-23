@@ -1,0 +1,13 @@
+.circulo {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    position: fixed;
+    top: 49%;
+    /*left: 51.5%; /* Figura central */
+    /*left: 25%; /* Figura izquierda*/
+    /*left: 81%; /* Figura derecha*/
+    transform: translate(-50%, -50%);
+    display: none; /* Inicialmente oculto */
+    z-index: 999;
+}

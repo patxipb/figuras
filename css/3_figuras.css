@@ -6,8 +6,8 @@ html, body {
 }
 
 body {
-    background: url('../image/3_siluetas.jpg') no-repeat center center fixed;
-    background-size: contain;
+    /* background: url('../image/3_siluetas_blancas.jpg') no-repeat center center fixed; */
+    /* background-size: contain; */
     display: block;
     position: relative;
 }
@@ -24,30 +24,52 @@ body {
     width: 100vw;
 }
 
-.columna {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* border-left: 1px solid #ccc; */
-    /* border-right: 1px solid #ccc; */
-    position: relative;
-}
 
-.columna:first-child {
-    border-left: none;
-}
-
-.columna:last-child {
-    border-right: none;
-}
-
-#circulo {
+.circulo {
     width: 75px;
     height: 75px;
     border-radius: 50%;
-    position: absolute;
-    display: none; /* Oculto inicialmente */
+    position: fixed;
+    top: 49%;
+    /*left: 51.5%; /* Figura central */
+    /*left: 25%; /* Figura izquierda*/
+    /*left: 81%; /* Figura derecha*/
+    transform: translate(-50%, -50%);
+    display: none; /* Inicialmente oculto */
+    z-index: 1000;
+}
+
+
+.menu-boton {
+    display: inline-block;
+    margin: 20px;
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 25px; /* Bordes redondeados */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* Quitar subrayado si es un <a> */
+    position: fixed;
+    top: 80%; /* Distancia desde la parte superior */
+    right: 50%;  /* Distancia desde el borde derecho */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.menu-boton:hover {
+    background-color: #2980b9;
+}
+
+
+.imagen-explicacion {
+    position: fixed;
+    width: 80%;
+    height: 70%;
+    top: 10%;
+    left: 10%;
+    object-fit: cover;
 }
 
 .boton-inicio {

@@ -2,17 +2,24 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Impacto Número Aleatorio</title>
-  <link rel="stylesheet" type="text/css" href="../css/figura.css"/>
-  <link rel="stylesheet" type="text/css" href="../css/numero.css"/>
-
-
+  <link rel="stylesheet" type="text/css" href="../css/3_figuras.css">
+  <link rel="stylesheet" href="../css/numero.css">
 </head>
+
 <body>
   <div class="overlay">
-    <div class="cuadrado-cadera" id="cuadradoCadera"></div>
-    <div class="numero-flotante" id="numeroFlotante"></div>
+      <img class="imagen-explicacion" id="imagen-explicacion" src="../image/Explicación_tmp.png" alt="Imagen de explicación">
+      <button id="menu-boton" class="menu-boton">Inicio</button>
+      <div class="cuadrado-cadera" id="cuadradoCadera"></div>
+      <div class="numero-flotante" id="numeroFlotante"></div>
   </div>
+
+  <audio id="sonidoDisparo" preload="auto">
+      <source src="../mp3/9mm-pistol-shoot.mp3" type="audio/mpeg">
+  </audio>
+  
   <a href="../index.html" class="boton-inicio">
       <img src="../image/home-button-icon.png" alt="Inicio" />
   </a>
