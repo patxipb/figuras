@@ -26,6 +26,7 @@ function actualizarNumero() {
     } else {
         numero.style.display = "none";
         cuadrado.style.display = "block";
+        audio.pause();
     }
     contador++;
 
@@ -39,7 +40,7 @@ botonInicio.addEventListener('click', () => {
     // Lógica para el botón de inicio
     botonInicio.style.display = 'none';
     imagenExplicacion.style.display = 'none';
-    body.style.background = "url('../image/silueta.jpg') no-repeat center center fixed";
+    body.style.background = "url('../image/figura.jpg') no-repeat center center fixed";
     body.style.backgroundSize = "contain";
     setInterval(actualizarNumero, 2000);
 });

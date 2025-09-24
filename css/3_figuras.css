@@ -26,8 +26,8 @@ body {
 
 
 .circulo {
-    width: 5%;
-    height: 7.5%;
+    width: 5vw;
+    height: 9vh;
     border-radius: 50%;
     position: fixed;
     top: 49%;

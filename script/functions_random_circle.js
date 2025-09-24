@@ -18,13 +18,14 @@ function alternarCirculo() {
         // Mostrar círculo con color aleatorio
         const color = Math.random() < 0.5 ? 'red' : 'green';
         circulo.style.backgroundColor = color;
-        circulo.style.left = '50%'; // Centro
+        circulo.style.left = '51.5%'; // Centro
         circulo.style.display = 'block';
 
 
     } else {
     // Ocultar el círculo
         circulo.style.display = 'none';
+        audio.pause();
     }
 
     // Alternar estado para la siguiente vez
@@ -35,7 +36,7 @@ botonInicio.addEventListener('click', () => {
     // Lógica para el botón de inicio
     botonInicio.style.display = 'none';
     imagenExplicacion.style.display = 'none';
-    body.style.background = "url('../image/silueta.jpg') no-repeat center center fixed";
+    body.style.background = "url('../image/figura.jpg') no-repeat center center fixed";
     body.style.backgroundSize = "contain";
     setInterval(alternarCirculo, 1200);
 });
