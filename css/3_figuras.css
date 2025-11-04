@@ -12,7 +12,7 @@ body {
     position: relative;
 }
 
-.overlay {
+.contenedor {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -21,19 +21,19 @@ body {
 .contenedor {
     display: flex;
     height: 100vh;
-    width: 100vw;
+    width: 100vh;
 }
 
 
 .circulo {
-    width: 5vw;
-    height: 9vh;
-    border-radius: 50%;
-    position: fixed;
-    top: 49%;
+    /* width: 10vh; */
+    /* height: 10vh; */
+    /* top: 49%; */
     /*left: 51.5%; /* Figura central */
     /*left: 25%; /* Figura izquierda*/
     /*left: 81%; /* Figura derecha*/
+    border-radius: 50%;
+    position: fixed;
     transform: translate(-50%, -50%);
     display: none; /* Inicialmente oculto */
     z-index: 1000;

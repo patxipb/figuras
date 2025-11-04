@@ -13,6 +13,10 @@ function alternarCirculo() {
         // Elegir color aleatorio
         const color = Math.random() < 0.5 ? 'red' : 'green';
         circulo.style.backgroundColor = color;
+        circulo.style.left = '52%';
+        circulo.style.top = '50%';
+        circulo.style.width = '10vh';
+        circulo.style.height = '10vh';
 
         // Elegir posición aleatoria
         posicionAleatoria = posicionesLeft[Math.floor(Math.random() * posicionesLeft.length)];
