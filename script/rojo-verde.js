@@ -16,7 +16,7 @@ async function rojoVerde() {
     botonMenu.style.display = 'none';
     imagenExplicacion.style.display = 'none';
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 13; i++) {
         await generarPausa(4950); // espera 5 segundos
         reproducirSonido();
         let fondo = obtenerElementoAleatorio(imagenesFondo);
