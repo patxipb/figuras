@@ -1,9 +1,9 @@
 .cuadrado-cadera {
-    position: absolute;
+    position: relative;
     width: 140px;
     height: 90px;
     top: 50%;
-    left: 51.85%;
+    left: 94.5%;
     margin-left: -75px; /* 50% del ancho */
     margin-top: -50px;  /* 50% de la altura */
     background-color: green;
@@ -19,7 +19,7 @@
     width: 140px;
     height: 90px;
     top: 49%;
-    left: 51.85%;
+    left: 95%;
     margin-left: -75px;
     margin-top: -50px;
     font-size: 60px;

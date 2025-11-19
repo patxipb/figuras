@@ -9,10 +9,8 @@ disparo.volume = 0.5;
 
 window.disparo = disparo; // necesario si utils.js usa disparo como global
 window.circulo = circulo; // igual para circulo
-window.mostrarCirculo = true;
 window.contadorRojos = 0;
 window.ejercicioActual = 6;
-window.mostrarCirculo = true;
 window.imagenExplicacion = imagenExplicacion;
 window.botonMenu = botonMenu;
 window.body = body;
@@ -20,9 +18,9 @@ window.body = body;
 
 const maxRojos = 8;
 
-botonMenu.addEventListener('click', ejercicio1);
+botonMenu.addEventListener('click', ejercicio6);
 
-async function ejercicio1() {
+async function ejercicio6() {
     botonMenu.style.display = 'none';
     imagenExplicacion.style.display = 'none';
 
@@ -41,10 +39,8 @@ async function ejercicio1() {
         circulo.style.display = 'none';
     }
     if (window.contadorRojos >= maxRojos) {
-/*     await generarPausa(10000).then(() => {
-        window.location.href = 'ejercicio6.html';
-    });
-    return; */
-}
+        body.style.background = "url('../image/Fin ejercicios.png') no-repeat center center fixed";
+        return; // finalizar ejercicio
+    }
 
 }

@@ -31,7 +31,7 @@ async function ejercicio4() {
     body.style.backgroundSize = "contain";
 
     while (window.contadorRojos < maxRojos) {
-        await generarPausa(5000); // espera 5 segundos antes del siguiente
+        await generarPausa(4950); // espera 5 segundos antes del siguiente
         reproducirSonido();
         let colorCirculo = calculaColor();
         if (colorCirculo === 'red') window.contadorRojos++;

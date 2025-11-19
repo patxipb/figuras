@@ -1,4 +1,6 @@
 export function reproducirSonido() {
+
+    //si viene precedido de una pausa mayor de 5s, el navegador puede bloquear la reproducción
     try {
         disparo.currentTime = 0; // Reinicia el sonido al principio
         disparo.play();
@@ -7,7 +9,6 @@ export function reproducirSonido() {
     }
 }
 
-// Función para pausar el sonido
 export function pausarSonido() {
     try {
         disparo.pause();
@@ -17,16 +18,12 @@ export function pausarSonido() {
     }
 }
 
-export function toggleCirculo() {
-    mostrarCirculo = !mostrarCirculo;
-}
-
 export function generarPausa(tiempo) {
     return new Promise(resolve => setTimeout(resolve, tiempo));
 }
 
 export function generarPausaAleatoria() {
-    const tiempo = Math.random() * 2000 + 3000; // entre 3000 ms (3 s) y 5000 ms (5 s)
+    const tiempo = Math.random() * 2000 + 2950; // entre 3000 ms (3 s) y 5000 ms (5 s)
     return new Promise(resolve => setTimeout(resolve, tiempo));
 }
 
@@ -58,9 +55,26 @@ export function calculaColor() {
     return Math.random() < 0.5 ? 'red' : 'green';
 }
 
+export function colorDistinto(color, colores = ['red', 'green']) {
+    const opciones = colores.filter(c => c !== color);
+    return opciones[Math.floor(Math.random() * opciones.length)];
+}
+
+export function colorAleatorio(colores = ['red', 'green', 'blue']) {
+    const indice = Math.floor(Math.random() * colores.length);
+    return colores[indice];
+}
+
+
 export function calculaAltura() {
     const alturas = ['30%', '50%', '72%'];
     return alturas[Math.floor(Math.random() * alturas.length)];
+}
+
+export function calculaAlturaLibre(alturaOcupada) {
+    const alturas = ['30%', '50%', '72%'];
+    const opciones = alturas.filter(pos => pos !== alturaOcupada);
+    return opciones[Math.floor(Math.random() * opciones.length)];
 }
 
 export function calculaIzquierda() {
@@ -68,34 +82,98 @@ export function calculaIzquierda() {
     return izquierdas[Math.floor(Math.random() * izquierdas.length)];
 }
 
+export function calculaIzquierdaLibre(izquierdaOcupada) {
+    const izquierdas = ['25.5%', '52%', '80.5%'];
+    const opciones = izquierdas.filter(pos => pos !== izquierdaOcupada);
+    return opciones[Math.floor(Math.random() * opciones.length)];
+}
+
 export function calculaTamanio() {
     const tamanios = [10, 8, 6.4, 5.12];
     return tamanios[Math.floor(Math.random() * tamanios.length)];
 }
 
-export function dibujarCirculo({color = 'red', top = '50%', left = '52%', size = 10}) {
-
+export function dibujarCirculo({circulo = window.circulo, color = 'red', top = '50%', left = '52%', size = 10}) {
+    //const circulo = window.circulo;
     circulo.style.backgroundColor = color;
     circulo.style.left = left;
     circulo.style.top = top;
     circulo.style.width = `${size}vh`;
     circulo.style.height = `${size}vh`;
-    window.circulo.style.display = 'block';
+    circulo.style.display = 'block';
+    circulo.style.border = '0.3vh solid black'; // Borde uniforme
+    circulo.style.borderRadius = '50%';
+    circulo.style.clipPath = 'circle(50%)';
+    circulo.style.zIndex = 2; // Círculo en medio
 
-   /*  if (mostrarCirculo) {
-        reproducirSonido();
-        window.circulo.style.display = 'block';
-        if (color === 'red') {
-            window.contadorRojos++;
-            console.log(`Círculos rojos mostrados: ${window.contadorRojos}`);
-        }
-    } else {
-        window.circulo.style.display = 'none';
-        pausarSonido();
-    } */
-    //mostrarCirculo = !mostrarCirculo;
-    //window.circulo.style.display = 'block';
+}
+
+export function dibujarCuadrado({cuadrado = window.cuadrado, color = 'blue', top = '50%', left = '52%', size = 10 }) {
+    //const cuadrado = window.cuadrado;
+    cuadrado.style.backgroundColor = color;
+    cuadrado.style.left = left;
+    cuadrado.style.top = top;
+    cuadrado.style.width = `${size}vh`;
+    cuadrado.style.height = `${size}vh`;
+    //cuadrado.style.position = 'absolute';
+    cuadrado.style.transform = 'translate(-50%, -50%)';
+    cuadrado.style.display = 'block';
+    cuadrado.style.border = '0.3vh solid black'; // Borde uniforme
+    cuadrado.style.clipPath = 'inset(0%)'; // Asegura bordes rectos
+    cuadrado.style.zIndex = 1; // Cuadrado detrás
+}
+
+export function dibujarTriangulo({triangulo = window.triangulo, color = 'green', top = '50%', left = '52%', size = 10 }) {
+    //const triangulo = window.triangulo;
     
+    triangulo.style.backgroundColor = color;
+    triangulo.style.left = left;
+    triangulo.style.top = top;
+    triangulo.style.width = `${size}vh`;
+    triangulo.style.height = `${size}vh`;
+    triangulo.style.display = 'block';
+    triangulo.style.border = '0.3vh solid black'; // Borde uniforme
+    triangulo.style.zIndex = 3; // Triángulo al frente
+
+    const r = size / 2; // radio del círculo
+    const orientacionArriba = Math.random() > 0.5;
+
+    // Calcular vértices del triángulo dentro de la caja del círculo
+    // Los vértices están normalizados en base al tamaño del círculo (diámetro = size)
+    const cx = 50; // centro
+    const cy = 50;
+    const R = 50; // radio en %
+
+    // Altura (fracción del radio hasta la base)
+    const hFrac = 0.8; // entre 0 y 1 → más bajo = base más grande
+    const yBase = R * hFrac; // desplazamiento vertical desde el centro a la base
+
+    // Punto superior del círculo
+    const puntaY = cy - R;
+    // Puntos de la base (en la circunferencia interior)
+    const baseY = cy + yBase;
+    const baseX = Math.sqrt(R ** 2 - yBase ** 2);
+
+    if (orientacionArriba) {
+        // Punta hacia arriba
+        triangulo.style.clipPath = `
+            polygon(
+                ${cx}% ${puntaY}%,
+                ${cx - baseX}% ${baseY}%,
+                ${cx + baseX}% ${baseY}%
+            )
+        `;
+    } else {
+        // Punta hacia abajo
+        triangulo.style.clipPath = `
+            polygon(
+                ${cx - baseX}% ${cy - yBase}%,
+                ${cx + baseX}% ${cy - yBase}%,
+                ${cx}% ${cy + R}%
+            )
+        `;
+    }
+
 }
 
 export async function mostrarCuentaAtras() {
@@ -131,11 +209,11 @@ export async function mostrarCuentaAtras() {
     contador.remove();
 }
 
-export  function obtenerElementoAleatorio(array) {
-  if (!Array.isArray(array) || array.length === 0) {
-    throw new Error("Debes pasar un array con al menos un elemento.");
-  }
-  
-  const indiceAleatorio = Math.floor(Math.random() * array.length);
-  return array[indiceAleatorio];
+export function obtenerElementoAleatorio(array) {
+    if (!Array.isArray(array) || array.length === 0) {
+        throw new Error("Debes pasar un array con al menos un elemento.");
+    }
+
+    const indiceAleatorio = Math.floor(Math.random() * array.length);
+    return array[indiceAleatorio];
 }
