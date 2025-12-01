@@ -18,7 +18,28 @@ window.body = body;
 var contadorRojos = 0;
 const maxRojos = 10;
 
-botonMenu.addEventListener('click', alternarCirculo);
+const form = document.getElementById('config-form');
+
+let exposiciones = 10;
+let tiempoEspera = 2000;      // valores por defecto
+let tiempoExposicion = 2500;
+
+// Cuando el usuario pulse "Iniciar"
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const valorExposiciones = document.getElementById("exposiciones").value.trim();
+    const valorEspera = document.getElementById("tiempo-espera").value.trim();
+    const valorExposicion = document.getElementById("tiempo-exposicion").value.trim();
+
+    // Mantener los valores por defecto si el input está vacío
+    exposiciones = valorExposiciones === "" ? 10 : Number(valorExposiciones);
+    tiempoEspera = valorEspera === "" ? 2000 : Number(valorEspera);
+    tiempoExposicion = valorExposicion === "" ? 2500 : Number(valorExposicion);
+
+    form.style.display = "none";
+    alternarCirculo();
+});
 
 async function alternarCirculo() {
     botonMenu.style.display = 'none';
@@ -28,8 +49,8 @@ async function alternarCirculo() {
     body.style.background = "url('../image/3_siluetas_blancas.jpg') no-repeat center center fixed";
     body.style.backgroundSize = "contain";
 
-    while (contadorRojos < maxRojos) {
-        await generarPausa(2000);
+    while (contadorRojos < exposiciones) {
+        await generarPausa(tiempoEspera);
         reproducirSonido();
         let colorCirculo = calculaColor();
         let izquierda = calculaIzquierda();
@@ -44,7 +65,7 @@ async function alternarCirculo() {
 
         }
 
-        await generarPausa(1500);
+        await generarPausa(tiempoExposicion);
         pausarSonido();
         circulo.style.display = 'none';
         circulo2.style.display = 'none';
@@ -58,53 +79,3 @@ async function alternarCirculo() {
     }
 
 }
-
-
-
-
-/* 
-const posicionesLeft = ['25.5%', '51.5%', '80.5%']; // Izquierda, Centro, Derecha
-let posicionAleatoria = null;
-
-function alternarCirculo() {
-    if (mostrarCirculo) {
-        // Elegir color aleatorio
-        const color = Math.random() < 0.5 ? 'red' : 'green';
-        circulo.style.backgroundColor = color;
-        circulo.style.left = '52%';
-        circulo.style.top = '50%';
-        circulo.style.width = '10vh';
-        circulo.style.height = '10vh';
-
-        // Elegir posición aleatoria
-        posicionAleatoria = posicionesLeft[Math.floor(Math.random() * posicionesLeft.length)];
-        circulo.style.left = posicionAleatoria;
-
-        // Mostrar el círculo y reproducir sonido
-        try {
-            audio.currentTime = 0;
-            audio.play();
-        } catch (e) {
-        // En algunos navegadores antiguos puede fallar, lo ignoramos
-            console.log("Audio error:", e);
-        }
-        circulo.style.display = 'block';
-
-    } else {
-        // Ocultar círculo
-        circulo.style.display = 'none';
-        audio.pause();
-    }
-
-    mostrarCirculo = !mostrarCirculo;
-}
-
-botonInicio.addEventListener('click', () => {
-    // Lógica para el botón de inicio
-    botonInicio.style.display = 'none';
-    imagenExplicacion.style.display = 'none';
-    body.style.background = "url('../image/3_siluetas_blancas.jpg') no-repeat center center fixed";
-    body.style.backgroundSize = "contain";
-    setInterval(alternarCirculo, 1200);
-});
- */

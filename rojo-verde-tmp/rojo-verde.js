@@ -10,38 +10,19 @@ window.disparo = disparo; // necesario si utils.js usa disparo como global
 
 const imagenesFondo = ['../image/rojo-verde 1.png', '../image/rojo-verde 2.png', '../image/rojo-verde 3.png', '../image/rojo-verde 4.png', '../image/rojo-verde 5.png', '../image/rojo-verde 6.png', '../image/rojo-verde 7.png', '../image/rojo-verde 8.png', '../image/rojo-verde 9.png', '../image/rojo-verde 10.png', '../image/rojo-verde 11.png', '../image/rojo-verde 12.png'];
 
-// --- NUEVO: formulario ---
-const form = document.getElementById('config-form');
-
-let tiempoEspera = 4950;      // valores por defecto
-let tiempoExposicion = 2000;
-
-// Cuando el usuario pulse "Iniciar"
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const valorEspera = document.getElementById("tiempo-espera").value.trim();
-    const valorExposicion = document.getElementById("tiempo-exposicion").value.trim();
-
-    // Mantener los valores por defecto si el input está vacío
-    tiempoEspera = valorEspera === "" ? 4950 : Number(valorEspera);
-    tiempoExposicion = valorExposicion === "" ? 2000 : Number(valorExposicion);
-
-    form.style.display = "none";
-    rojoVerde();
-});
+botonMenu.addEventListener('click', rojoVerde);
 
 async function rojoVerde() {
     botonMenu.style.display = 'none';
     imagenExplicacion.style.display = 'none';
 
     for (let i = 0; i < 13; i++) {
-        await generarPausa(tiempoEspera);
+        await generarPausa(4950); // espera 5 segundos
         reproducirSonido();
         let fondo = obtenerElementoAleatorio(imagenesFondo);
         body.style.background = `url('${fondo}') no-repeat center center fixed`;
         body.style.backgroundSize = "contain";
-        await generarPausa(tiempoExposicion);
+        await generarPausa(3500); // visible 3,5 segundos
         pausarSonido();
         body.style.backgroundImage = 'none';
 
@@ -51,5 +32,9 @@ async function rojoVerde() {
     imagenExplicacion.src = '../image/Fin ejercicios.png';
     imagenExplicacion.style.display = 'block';
     return;
+
+
+
+    
 
 }

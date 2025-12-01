@@ -18,9 +18,32 @@ export function pausarSonido() {
     }
 }
 
-export function generarPausa(tiempo) {
+/* export function generarPausa(tiempo) {
     return new Promise(resolve => setTimeout(resolve, tiempo));
+} */
+
+export function generarPausa(tiempo) {
+    return new Promise(async resolve => {
+        if (tiempo <= 4950) {
+            // Espera normal
+            setTimeout(resolve, tiempo);
+            return;
+        }
+
+        // Ciclos de 4950 ms
+        const ciclo = 4950;
+        let restante = tiempo;
+
+        while (restante > ciclo) {
+            await new Promise(r => setTimeout(r, ciclo));
+            restante -= ciclo;
+        }
+
+        // Última pausa con el tiempo restante
+        setTimeout(resolve, restante);
+    });
 }
+
 
 export function generarPausaAleatoria() {
     const tiempo = Math.random() * 2000 + 2950; // entre 3000 ms (3 s) y 5000 ms (5 s)

@@ -8,37 +8,46 @@ disparo.volume = 0.5;
 
 window.disparo = disparo; // necesario si utils.js usa disparo como global
 
-const imagenesFondo = ['../image/rojo-verde 1.png', '../image/rojo-verde 2.png', '../image/rojo-verde 3.png', '../image/rojo-verde 4.png', '../image/rojo-verde 5.png', '../image/rojo-verde 6.png', '../image/rojo-verde 7.png', '../image/rojo-verde 8.png', '../image/rojo-verde 9.png', '../image/rojo-verde 10.png', '../image/rojo-verde 11.png', '../image/rojo-verde 12.png'];
+const persona1 = ['../image/Persona1-realista/persona1.jpeg', '../image/Persona1-realista/persona2.jpeg', '../image/Persona1-realista/persona3.jpeg', '../image/Persona1-realista/persona4.jpeg', '../image/Persona1-realista/persona5.jpeg', '../image/Persona1-realista/persona6.jpeg', '../image/Persona1-realista/persona7.jpeg'];
+
+const persona2 = ['../image/Persona2-realista/persona1.jpeg', '../image/Persona2-realista/persona2.jpeg', '../image/Persona2-realista/persona3.jpeg', '../image/Persona2-realista/persona4.jpeg', '../image/Persona2-realista/persona5.jpeg', '../image/Persona2-realista/persona6.jpeg', '../image/Persona2-realista/persona7.jpeg'];
 
 // --- NUEVO: formulario ---
 const form = document.getElementById('config-form');
 
-let tiempoEspera = 4950;      // valores por defecto
+let exposiciones = 10;
+let tiempoEspera = 500;      // valores por defecto
 let tiempoExposicion = 2000;
 
 // Cuando el usuario pulse "Iniciar"
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    const valorExposiciones = document.getElementById("exposiciones").value.trim();
     const valorEspera = document.getElementById("tiempo-espera").value.trim();
     const valorExposicion = document.getElementById("tiempo-exposicion").value.trim();
 
     // Mantener los valores por defecto si el input está vacío
-    tiempoEspera = valorEspera === "" ? 4950 : Number(valorEspera);
+    exposiciones = valorExposiciones === "" ? 10 : Number(valorExposiciones);
+    tiempoEspera = valorEspera === "" ? 500 : Number(valorEspera);
     tiempoExposicion = valorExposicion === "" ? 2000 : Number(valorExposicion);
 
     form.style.display = "none";
-    rojoVerde();
+    valorarPersona();
 });
 
-async function rojoVerde() {
+async function valorarPersona(){
     botonMenu.style.display = 'none';
     imagenExplicacion.style.display = 'none';
 
-    for (let i = 0; i < 13; i++) {
+    let persona = Math.random() < 0.5 ? persona1 : persona2;
+    let amenaza = 0;
+    
+    for (let i = 0; i < exposiciones; i++) {
+    //while (amenaza < exposiciones) 
         await generarPausa(tiempoEspera);
         reproducirSonido();
-        let fondo = obtenerElementoAleatorio(imagenesFondo);
+        let fondo = obtenerElementoAleatorio(persona);
         body.style.background = `url('${fondo}') no-repeat center center fixed`;
         body.style.backgroundSize = "contain";
         await generarPausa(tiempoExposicion);
@@ -46,6 +55,9 @@ async function rojoVerde() {
         body.style.backgroundImage = 'none';
 
     }
+
+
+
 
     await generarPausa(10000);
     imagenExplicacion.src = '../image/Fin ejercicios.png';

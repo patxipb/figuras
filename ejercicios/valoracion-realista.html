@@ -4,26 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/ejercicios.css">
-    <title>Ejercicios 3 figuras con botón</title>
+    <title>Ejercicio valoración con figuras realistas</title>
 </head>
 <body>
     <div class="contenedor">
-        <img class="imagen-explicacion" id="imagen-explicacion" src="../image/Explicación_tmp.png" alt="Imagen de explicación">
+        <img class="imagen-explicacion" id="imagen-explicacion" src = '../image/Explicación_tmp.png' alt="Imagen de explicación">
         <form id="config-form" method="POST" class="form-config">
             <label for="tiempo-espera">Exposición amenaza:</label>
             <input type="number" id="exposiciones" name="exposiciones" value="10">
 
             <label for="tiempo-espera">Tiempo máximo de espera (ms):</label>
-            <input type="number" id="tiempo-espera" name="tiempo_espera" value="2000">
+            <input type="number" id="tiempo-espera" name="tiempo_espera" value="500">
 
             <label for="tiempo-exposicion">Tiempo máximo de exposición (ms):</label>
-            <input type="number" id="tiempo-exposicion" name="tiempo_exposicion" value="2500">
+            <input type="number" id="tiempo-exposicion" name="tiempo_exposicion" value="2000">
 
             <input type="submit" id="menu-boton" class="menu-boton" value="Iniciar">
         </form>
-
-        <div class="circulo" id="circulo"></div>
-        <div class="circulo" id="circulo2"></div>
     </div>
 
     <audio id="sonidoDisparo" preload="auto">
@@ -33,7 +30,7 @@
     <a href="../index.html" class="boton-inicio">
         <img src="../image/home-button-icon.png" alt="Inicio" />
     </a>
-    
-    <script type="module" src="../script/3_figuras_circulo.js"></script>
+
+    <script type="module" src="../script/valoracion-realista.js"></script>
 </body>
 </html>
