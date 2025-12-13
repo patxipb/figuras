@@ -2,7 +2,7 @@ import { generarPausa, pausarSonido, reproducirSonido, dibujarCuadrado } from ".
 
 const body = document.body;
 const botonMenu = document.getElementById('menu-boton');
-const imagenExplicacion = document.getElementById('imagen-explicacion');
+const explicacion = document.getElementById('explicacion');
 const disparo = document.getElementById('sonidoDisparo');
 disparo.volume = 0.5;
 window.disparo = disparo; // necesario si utils.js usa disparo como global
@@ -13,7 +13,6 @@ var numero = document.getElementById("numeroFlotante");
 
 window.body = body;
 window.cuadrado = cuadrado;
-window.imagenExplicacion = imagenExplicacion;
 window.botonMenu = botonMenu;
 
 //var mostrandoNumero = false;
@@ -45,7 +44,7 @@ form.addEventListener('submit', (e) => {
 
 async function alternarNumero() {
     botonMenu.style.display = 'none';
-    imagenExplicacion.style.display = 'none';
+    explicacion.style.display = 'none';
     body.style.background = "url('../image/figura.jpg') no-repeat center center fixed";
     body.style.backgroundSize = "contain";
 
@@ -64,7 +63,7 @@ async function alternarNumero() {
         await generarPausa(tiempoExposicion);
         numero.style.display = "none";
         pausarSonido();
-        setTimeout(() => reproducirSonido(), 50);
+        //setTimeout(() => reproducirSonido(), 50);
         dibujarCuadrado({color: 'green'});
     }
 

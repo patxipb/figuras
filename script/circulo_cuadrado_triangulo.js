@@ -10,7 +10,7 @@ import {
 } from './utils.js';
 
 const botonMenu = document.getElementById('menu-boton');
-const imagenExplicacion = document.getElementById('imagen-explicacion');
+const explicacion = document.getElementById('explicacion');
 const body = document.body;
 
 // Referencias a figuras → agrupadas por tipo
@@ -134,7 +134,7 @@ form.addEventListener('submit', (e) => {
 async function circuloCuadradoTriangulo() {
 
     botonMenu.style.display = 'none';
-    imagenExplicacion.style.display = 'none';
+    explicacion.style.display = 'none';
 
     body.style.background = "url('../image/3_siluetas_blancas.jpg') no-repeat center center fixed";
     body.style.backgroundSize = "contain";

@@ -4,7 +4,7 @@ import {dibujarCirculo, generarPausa, generarPausaAleatoria, calculaColor, repro
 
 const body = document.body;
 const botonMenu = document.getElementById('menu-boton');
-const imagenExplicacion = document.getElementById('imagen-explicacion');
+const explicacion = document.getElementById('explicacion');
 const disparo = document.getElementById('sonidoDisparo');
 const circulo = document.getElementById('circulo');
 disparo.volume = 0.5;
@@ -15,7 +15,6 @@ window.mostrarCirculo = true;
 window.contadorRojos = 0;
 window.ejercicioActual = 2;
 window.mostrarCirculo = true;
-window.imagenExplicacion = imagenExplicacion;
 window.botonMenu = botonMenu;
 window.body = body;
 
@@ -41,7 +40,7 @@ form.addEventListener('submit', (e) => {
 
 async function alternarCirculo() {
     botonMenu.style.display = 'none';
-    imagenExplicacion.style.display = 'none';
+    explicacion.style.display = 'none';
     body.style.background = "url('../image/figura.jpg') no-repeat center center fixed";
     body.style.backgroundSize = "contain";
 

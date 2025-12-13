@@ -1,9 +1,10 @@
 import { obtenerElementoAleatorio, generarPausa, reproducirSonido, pausarSonido} from './utils.js';
 
 const botonMenu = document.getElementById('menu-boton');
-const imagenExplicacion = document.getElementById('imagen-explicacion');
+//const imagenExplicacion = document.getElementById('imagen-explicacion');
 const body = document.body;
 const disparo = document.getElementById('sonidoDisparo');
+const explicacion = document.getElementById('explicacion');
 disparo.volume = 0.5;
 
 window.disparo = disparo; // necesario si utils.js usa disparo como global
@@ -38,7 +39,7 @@ form.addEventListener('submit', (e) => {
 
 async function valorarPersona(){
     botonMenu.style.display = 'none';
-    imagenExplicacion.style.display = 'none';
+    explicacion.style.display = 'none';
 
     let persona = Math.random() < 0.5 ? persona1 : persona2;
     let amenaza = 0;

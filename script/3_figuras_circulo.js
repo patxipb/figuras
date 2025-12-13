@@ -1,7 +1,7 @@
 import { dibujarCirculo, generarPausa, reproducirSonido, pausarSonido, calculaColor, colorDistinto, calculaIzquierda, calculaIzquierdaLibre } from "./utils.js";
 
 const botonMenu = document.getElementById('menu-boton');
-const imagenExplicacion = document.getElementById('imagen-explicacion');
+const explicacion = document.getElementById('explicacion');
 const body = document.body;
 const circulo = document.getElementById('circulo');
 const circulo2 = document.getElementById('circulo2');
@@ -11,7 +11,6 @@ disparo.volume = 0.5;
 window.disparo = disparo; // necesario si utils.js usa disparo como global
 window.circulo = circulo; // igual para circulo
 window.circulo2 = circulo2;
-window.imagenExplicacion = imagenExplicacion;
 window.botonMenu = botonMenu;
 window.body = body;
 
@@ -43,7 +42,7 @@ form.addEventListener('submit', (e) => {
 
 async function alternarCirculo() {
     botonMenu.style.display = 'none';
-    imagenExplicacion.style.display = 'none';
+    explicacion.style.display = 'none';
 
     // Fondo
     body.style.background = "url('../image/3_siluetas_blancas.jpg') no-repeat center center fixed";

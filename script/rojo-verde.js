@@ -1,7 +1,7 @@
 import { obtenerElementoAleatorio, generarPausa, reproducirSonido, pausarSonido} from './utils.js';
 
 const botonMenu = document.getElementById('menu-boton');
-const imagenExplicacion = document.getElementById('imagen-explicacion');
+const explicacion = document.getElementById('explicacion');
 const body = document.body;
 const disparo = document.getElementById('sonidoDisparo');
 disparo.volume = 0.5;
@@ -33,7 +33,7 @@ form.addEventListener('submit', (e) => {
 
 async function rojoVerde() {
     botonMenu.style.display = 'none';
-    imagenExplicacion.style.display = 'none';
+    explicacion.style.display = 'none';
 
     for (let i = 0; i < 13; i++) {
         await generarPausa(tiempoEspera);
