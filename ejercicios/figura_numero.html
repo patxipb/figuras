@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Impacto Número Aleatorio</title>
-  <link rel="stylesheet" type="text/css" href="../css/ejercicios.css">
-  <!-- <link rel="stylesheet" href="../css/numero.css"> -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impacto Número Aleatorio</title>
+    <link rel="stylesheet" type="text/css" href="../css/ejercicios.css">
 </head>
 
 <body>
-  <div class="contenedor">
-      <h2 id="explicacion" class="explicacion"> Cuando aparezca un número responder con un disparo desde la posición que indique el instructor, salvo si aparece aquel(los) número(s) que indicará el instructor.</h2>
-      <form id="config-form" method="POST" class="form-config">
-          <label for="tiempo-espera">Exposición amenaza:</label>
-          <input type="number" id="exposiciones" name="exposiciones" value="10">
+    <div class="contenedor">
+        <h2 id="explicacion" class="explicacion"> Cuando aparezca un número responder con un disparo desde la posición que indique el instructor, salvo si aparece aquel(los) número(s) que indicará el instructor.</h2>
+        <form id="config-form" method="POST" class="form-config">
+            <div class="campo">
+                <label for="tiempo-espera">Exposición amenaza:</label>
+                <input type="number" id="exposiciones" name="exposiciones" value="10">
+            </div>
 
-          <label for="tiempo-espera">Tiempo máximo de espera (ms):</label>
-          <input type="number" id="tiempo-espera" name="tiempo_espera" value="400">
+            <div class="campo">
+                <label for="tiempo-espera">Tiempo máximo de espera (ms):</label>
+                <input type="number" id="tiempo-espera" name="tiempo_espera" value="400">
+            </div>
 
-          <label for="tiempo-exposicion">Tiempo máximo de exposición (ms):</label>
-          <input type="number" id="tiempo-exposicion" name="tiempo_exposicion" value="500">
+            <div class="campo">
+                <label for="tiempo-exposicion">Tiempo máximo de exposición (ms):</label>
+                <input type="number" id="tiempo-exposicion" name="tiempo_exposicion" value="500">
+            </div>
 
-          <input type="submit" id="menu-boton" class="menu-boton" value="Iniciar">
-      </form>
-      
-      <div class="cuadrado" id="cuadrado"></div>
-      <div class="numeroFlotante" id="numeroFlotante"></div>
-  </div>
+            <div class="campo">
+                <input type="submit" id="menu-boton" class="menu-boton" value="Iniciar">
+            </div>
+        </form>
+        
+        <div class="cuadrado" id="cuadrado"></div>
+        <div class="numeroFlotante" id="numeroFlotante"></div>
+    </div>
 
-  <audio id="sonidoDisparo" preload="auto">
-      <source src="../mp3/9mm-pistol-shoot.mp3" type="audio/mpeg">
-  </audio>
-  
-  <a href="../index.html" class="boton-inicio">
-      <img src="../image/home-button-icon.png" alt="Inicio" />
-  </a>
+    <audio id="sonidoDisparo" preload="auto">
+        <source src="../mp3/9mm-pistol-shoot.mp3" type="audio/mpeg">
+    </audio>
 
-  <script type="module" src="../script/figura_numero.js"></script>
+    <a href="../index.html" class="boton-inicio">
+        <img src="../image/home-button-icon.png" alt="Inicio" />
+    </a>
+
+    <script type="module" src="../script/figura_numero.js"></script>
 </body>
 </html>
