@@ -117,28 +117,33 @@ export function calculaTamanio() {
 }
 
 export function dibujarCirculo({circulo = window.circulo, color = 'red', top = '50%', left = '52%', size = 10}) {
-    //const circulo = window.circulo;
+    const isVertical = window.innerHeight > window.innerWidth;
+    const unidad = isVertical ? 'vw' : 'vh';
+
     circulo.style.backgroundColor = color;
     circulo.style.left = left;
     circulo.style.top = top;
-    circulo.style.width = `${size}vh`;
-    circulo.style.height = `${size}vh`;
+
+    circulo.style.width = `${size}${unidad}`;
+    circulo.style.height = `${size}${unidad}`;
+
     circulo.style.display = 'block';
-    circulo.style.border = '0.3vh solid black'; // Borde uniforme
+    circulo.style.border = '0.3vh solid black';
     circulo.style.borderRadius = '50%';
     circulo.style.clipPath = 'circle(50%)';
-    circulo.style.zIndex = 2; // Círculo en medio
-
+    circulo.style.zIndex = 2;
 }
 
 export function dibujarCuadrado({cuadrado = window.cuadrado, color = 'blue', top = '50%', left = '52%', size = 10 }) {
-    //const cuadrado = window.cuadrado;
+    const isVertical = window.innerHeight > window.innerWidth;
+    const unidad = isVertical ? 'vw' : 'vh';
+
     cuadrado.style.backgroundColor = color;
     cuadrado.style.left = left;
     cuadrado.style.top = top;
-    cuadrado.style.width = `${size}vh`;
-    cuadrado.style.height = `${size}vh`;
-    //cuadrado.style.position = 'absolute';
+    cuadrado.style.width = `${size}${unidad}`;
+    cuadrado.style.height = `${size}${unidad}`;
+    
     cuadrado.style.transform = 'translate(-50%, -50%)';
     cuadrado.style.display = 'block';
     cuadrado.style.border = '0.3vh solid black'; // Borde uniforme
@@ -147,13 +152,14 @@ export function dibujarCuadrado({cuadrado = window.cuadrado, color = 'blue', top
 }
 
 export function dibujarTriangulo({triangulo = window.triangulo, color = 'green', top = '50%', left = '52%', size = 10 }) {
-    //const triangulo = window.triangulo;
-    
+    const isVertical = window.innerHeight > window.innerWidth;
+    const unidad = isVertical ? 'vw' : 'vh';
+
     triangulo.style.backgroundColor = color;
     triangulo.style.left = left;
     triangulo.style.top = top;
-    triangulo.style.width = `${size}vh`;
-    triangulo.style.height = `${size}vh`;
+    triangulo.style.width = `${size}${unidad}`;
+    triangulo.style.height = `${size}${unidad}`;
     triangulo.style.display = 'block';
     triangulo.style.border = '0.3vh solid black'; // Borde uniforme
     triangulo.style.zIndex = 3; // Triángulo al frente
