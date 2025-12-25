@@ -1,4 +1,14 @@
-import { dibujarCirculo, generarPausa, reproducirSonido, pausarSonido, calculaColor, colorDistinto, calculaIzquierda, calculaIzquierdaLibre } from "./utils.js";
+import { 
+    dibujarCirculo, 
+    generarPausa, 
+    reproducirSonido, 
+    pausarSonido, 
+    calculaColor, 
+    colorDistinto, 
+    columnaAleatoria, 
+    columnaAleatoriaDiferente, 
+    centroColumna
+} from "./utils.js";
 
 const botonMenu = document.getElementById('menu-boton');
 const explicacion = document.getElementById('explicacion');
@@ -6,6 +16,7 @@ const body = document.body;
 const circulo = document.getElementById('circulo');
 const circulo2 = document.getElementById('circulo2');
 const disparo = document.getElementById('sonidoDisparo');
+const columnas = document.querySelectorAll('.columna');
 disparo.volume = 0.5;
 
 window.disparo = disparo; // necesario si utils.js usa disparo como global
@@ -14,8 +25,7 @@ window.circulo2 = circulo2;
 window.botonMenu = botonMenu;
 window.body = body;
 
-var contadorRojos = 0;
-const maxRojos = 10;
+let contadorRojos = 0;
 
 const form = document.getElementById('config-form');
 
@@ -37,31 +47,36 @@ form.addEventListener('submit', (e) => {
     tiempoExposicion = valorExposicion === "" ? 2500 : Number(valorExposicion);
 
     form.style.display = "none";
-    alternarCirculo();
+    dibujarCirculosAleatorios();
 });
 
-async function alternarCirculo() {
-    botonMenu.style.display = 'none';
-    explicacion.style.display = 'none';
 
-    // Fondo
-    body.style.background = "url('../image/3_siluetas_blancas.jpg') no-repeat center center fixed";
-    body.style.backgroundSize = "contain";
+async function dibujarCirculosAleatorios() {
+    
+    explicacion.style.display = 'none';
+    columnas.forEach(col => {
+        col.style.backgroundImage = "url('../image/figura_sola.png')";
+    });
 
     while (contadorRojos < exposiciones) {
         await generarPausa(tiempoEspera);
         reproducirSonido();
         let colorCirculo = calculaColor();
-        let izquierda = calculaIzquierda();
         if (colorCirculo === 'red') contadorRojos++;
-        dibujarCirculo({ color: colorCirculo, top: '50%', left: izquierda, size: 10 });
-        
+
+        // Selecciona una columna aleatoria y obtiene su centro
+        const columna = columnaAleatoria(columnas);
+        const { left, top } = centroColumna(columna);
+
+        dibujarCirculo({circulo: circulo, color: colorCirculo, top: top, left: left});
+
         // Segundo círculo aleatorio con color distinto
         if (contadorRojos >= 4 && Math.random() < 0.5) {
             let colorCirculo2 = colorDistinto(colorCirculo);
             if (colorCirculo2 === 'red') contadorRojos++;
-            dibujarCirculo({ circulo: circulo2, color: colorCirculo2, top: '50%', left: calculaIzquierdaLibre(izquierda), size: 10 });
-
+            const columna2 = columnaAleatoriaDiferente(columnas, columna);
+            const { left: left2, top: top2 } = centroColumna(columna2);
+            dibujarCirculo({ circulo: circulo2, color: colorCirculo2, top: top2, left: left2});
         }
 
         await generarPausa(tiempoExposicion);
@@ -70,11 +85,15 @@ async function alternarCirculo() {
         circulo2.style.display = 'none';
     }
 
-    if (contadorRojos >= maxRojos) {
+
+    // Finalizar ejercicio
+    if (contadorRojos >= exposiciones) {
         await generarPausa(5000);
+        columnas.forEach(col => {
+            col.style.display = 'none';
+        });
         body.style.background = "url('../image/Fin ejercicios.png') no-repeat center center fixed";
         body.style.display = 'block';
-        return; // finalizar ejercicio
+        return; 
     }
-
 }

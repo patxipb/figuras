@@ -35,6 +35,7 @@ body {
 .triangulo,
 .numeroFlotante {
     position: fixed;
+    /* position: absolute; */
     transform: translate(-50%, -50%);
     z-index: 1000;
     display: none;
@@ -204,4 +205,22 @@ body {
     .form-config input[type="submit"] {
         width: 100%;
     }
+}
+
+/* ===============================
+   COLUMNAS CON FIGURA DE FONDO
+================================ */
+
+.columna {
+    flex: 1;
+    height: 100%;
+    position: relative;
+
+    /* background-image: url('../image/figura_sola.png'); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    overflow: hidden;
+    /* display: none; */
 }

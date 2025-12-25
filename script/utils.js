@@ -1,3 +1,31 @@
+// Oculta todas las figuras de los arrays pasados
+export function ocultarTodasFiguras(arraysFiguras) {
+    arraysFiguras.flat().forEach(el => {
+        el.style.display = 'none';
+    });
+}
+
+// Dibuja todas las figuras en la columna recibida (elemento DOM)
+export function dibujarColumnaFiguras({columna, columnas, FIGURAS, colorAleatorio, contadorRojosRef}) {
+    // Obtener el índice de la columna para asociar la figura correcta
+    const index = Array.from(columnas).indexOf(columna);
+    // Calcular la posición horizontal real de la columna
+    const rect = columna.getBoundingClientRect();
+    const left = `${rect.left + rect.width / 2}px`;
+
+    FIGURAS.forEach(fig => {
+        if (Math.random() < fig.prob) {
+            const el = fig.elementos[index];
+            const color = colorAleatorio();
+            // Contador cuando aparece círculo rojo
+            if (fig.dibujar === FIGURAS[0].dibujar && color === 'red') {
+                contadorRojosRef.value++;
+            }
+            fig.dibujar(el, color, left);
+            el.style.display = 'block';
+        }
+    });
+}
 export function reproducirSonido() {
 
     //si viene precedido de una pausa mayor de 5s, el navegador puede bloquear la reproducción
@@ -245,4 +273,29 @@ export function obtenerElementoAleatorio(array) {
 
     const indiceAleatorio = Math.floor(Math.random() * array.length);
     return array[indiceAleatorio];
+}
+
+
+// Devuelve una columna aleatoria del NodeList
+export function columnaAleatoria(columnas) {
+    return columnas[Math.floor(Math.random() * columnas.length)];
+}
+
+// Devuelve el centro de una columna como {left, top}
+export function centroColumna(col) {
+    const rect = col.getBoundingClientRect();
+    return {
+        left: `${rect.left + rect.width / 2}px`,
+        top: `${rect.top + rect.height / 2}px`
+    };
+}
+
+// Devuelve una columna aleatoria distinta de la columna pasada
+export function columnaAleatoriaDiferente(columnas, columnaActual) {
+    if (columnas.length < 2) return columnaActual;
+    let columna2;
+    do {
+        columna2 = columnaAleatoria(columnas);
+    } while (columna2 === columnaActual);
+    return columna2;
 }

@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio con 3 figuras y circulos</title>
     <link rel="stylesheet" href="../css/ejercicios.css">
-    <title>Ejercicios 3 figuras con botón</title>
 </head>
 <body>
     <div class="contenedor">
+
+        <div class="columna" data-columna="1"></div>
+        <div class="columna" data-columna="2"></div>
+        <div class="columna" data-columna="3"></div>
+        
         <h2 id="explicacion" class="explicacion"> Cuando aparezca un circulo rojo  responder con los disparos que indique el instructor sobre la silueta que lo contiene.</h2>
         <form id="config-form" method="POST" class="form-config">
             
             <div class="campo">
-                <label for="tiempo-espera">Exposición amenaza:</label>
+                <label for="exposiciones">Número apariciones objetivo:</label>
                 <input type="number" id="exposiciones" name="exposiciones" value="10">
             </div>
 
@@ -44,5 +49,7 @@
     </a>
     
     <script type="module" src="../script/3_figuras_circulo.js"></script>
+
+
 </body>
 </html>
