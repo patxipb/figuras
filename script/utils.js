@@ -26,6 +26,7 @@ export function dibujarColumnaFiguras({columna, columnas, FIGURAS, colorAleatori
         }
     });
 }
+
 export function reproducirSonido() {
 
     //si viene precedido de una pausa mayor de 5s, el navegador puede bloquear la reproducción
@@ -45,10 +46,6 @@ export function pausarSonido() {
         console.error("Error al pausar el sonido:", error);
     }
 }
-
-/* export function generarPausa(tiempo) {
-    return new Promise(resolve => setTimeout(resolve, tiempo));
-} */
 
 export function generarPausa(tiempo) {
     return new Promise(async resolve => {
@@ -76,30 +73,6 @@ export function generarPausa(tiempo) {
 export function generarPausaAleatoria() {
     const tiempo = Math.random() * 2000 + 2950; // entre 3000 ms (3 s) y 5000 ms (5 s)
     return new Promise(resolve => setTimeout(resolve, tiempo));
-}
-
-export function dibujarFiguras() {
-    botonInicio.style.display = 'none';
-    imagenExplicacion.style.display = 'none';
-    body.style.backgroundSize = "contain";
-    if (ejercicioActual <= 4) {
-        body.style.background = "url('../image/figura.jpg') no-repeat center center fixed";
-    } else {
-        body.style.background = "url('../image/3_siluetas_blancas.jpg') no-repeat center center fixed";
-    }
-    body.style.background.display = 'block';
-    body.style.backgroundSize = "contain";
-}
-
-export function borrarFiguras() {
-    
-    generarPausa(5000).then(() => { 
-        circulo.style.display = 'none';
-        body.style.backgroundImage = 'none'; 
-        siguienteExplicacion(ejercicioActual);
-        botonInicio.removeEventListener('click', iniciarEjercicios);
-        });
-    
 }
 
 export function calculaColor() {

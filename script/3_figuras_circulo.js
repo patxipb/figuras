@@ -47,13 +47,14 @@ form.addEventListener('submit', (e) => {
     tiempoExposicion = valorExposicion === "" ? 2500 : Number(valorExposicion);
 
     form.style.display = "none";
+    explicacion.style.display = 'none';
+    
     dibujarCirculosAleatorios();
 });
 
 
 async function dibujarCirculosAleatorios() {
     
-    explicacion.style.display = 'none';
     columnas.forEach(col => {
         col.style.backgroundImage = "url('../image/figura_sola.png')";
     });

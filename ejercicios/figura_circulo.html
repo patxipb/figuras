@@ -9,20 +9,35 @@
 
 <body>
     <div class="contenedor">
+
+        <div class="columna" data-columna="1"></div>
+        <div class="columna" data-columna="2"></div>
+        <div class="columna" data-columna="3"></div>
+
         <h2 id="explicacion" class="explicacion"> Cuando aparezca un circulo rojo  responder con los disparos que indique el instructor sobre la silueta que lo contiene.</h2>
+
         <form id="config-form" method="POST" class="form-config">
+
             <div class="campo">
-                <label for="tiempo-espera">Exposición amenaza:</label>
+                <label for="exposiciones">Número apariciones objetivo:</label>
                 <input type="number" id="exposiciones" name="exposiciones" value="10">
             </div>
+
+            <div class="campo">
+                <label for="tiempo-espera">Tiempo máximo de espera (ms):</label>
+                <input type="number" id="tiempo-espera" name="tiempo_espera" value="2000">
+            </div>
+            
             <div class="campo">
                 <label for="tiempo-exposicion">Tiempo máximo de exposición (ms):</label>
                 <input type="number" id="tiempo-exposicion" name="tiempo_exposicion" value="2000">
             </div>
+            
             <div class="campo">
                 <input type="submit" id="menu-boton" class="menu-boton" value="Iniciar">
             </div>
         </form>
+        
         <div class="circulo" id="circulo"></div>
     </div>
 

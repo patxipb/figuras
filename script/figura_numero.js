@@ -1,8 +1,15 @@
-import { generarPausa, pausarSonido, reproducirSonido, dibujarCuadrado } from "./utils.js";
+import { 
+    generarPausa, 
+    pausarSonido, 
+    reproducirSonido, 
+    dibujarCuadrado, 
+    centroColumna
+} from "./utils.js";
 
 const body = document.body;
 const botonMenu = document.getElementById('menu-boton');
 const explicacion = document.getElementById('explicacion');
+const columnas = document.querySelectorAll('.columna');
 const disparo = document.getElementById('sonidoDisparo');
 disparo.volume = 0.5;
 window.disparo = disparo; // necesario si utils.js usa disparo como global
@@ -14,10 +21,6 @@ var numero = document.getElementById("numeroFlotante");
 window.body = body;
 window.cuadrado = cuadrado;
 window.botonMenu = botonMenu;
-
-//var mostrandoNumero = false;
-let contador = 0;
-const maxRepeticiones = 12; // Número máximo de veces que se mostrará el número
 
 const form = document.getElementById('config-form');
 
@@ -38,24 +41,26 @@ form.addEventListener('submit', (e) => {
     tiempoExposicion = valorExposicion === "" ? 500 : Number(valorExposicion);
 
     form.style.display = "none";
+    explicacion.style.display = 'none';
+
     alternarNumero();
 });
 
 
 async function alternarNumero() {
-    botonMenu.style.display = 'none';
-    explicacion.style.display = 'none';
-    body.style.background = "url('../image/figura.jpg') no-repeat center center fixed";
-    body.style.backgroundSize = "contain";
 
+    columnas[1].style.backgroundImage = "url('../image/figura_sola.png')";
+    const { left, top } = centroColumna(columnas[1]);
+
+    let contador = 0;
     while (contador < exposiciones) {
         await generarPausa(tiempoEspera);
         cuadrado.style.display = "none";
         reproducirSonido();
         var numeroAleatorio = Math.floor(Math.random() * 9) + 1;
         numero.innerText = numeroAleatorio;
-        numero.style.left = '52%'; // Centrar horizontalmente
-        numero.style.top = '50%'; // Centrar verticalmente
+        numero.style.left = left; // Centrar horizontalmente
+        numero.style.top = top; // Centrar verticalmente
         numero.style.display = "block";
         if (numeroAleatorio != 3) {
             contador++;
@@ -64,15 +69,17 @@ async function alternarNumero() {
         numero.style.display = "none";
         pausarSonido();
         //setTimeout(() => reproducirSonido(), 50);
-        dibujarCuadrado({color: 'green'});
+        dibujarCuadrado({color: 'green', left: left, top: top});
     }
 
-    await generarPausa(5000);
-    if (contador >= maxRepeticiones) {
+    // Finalizar ejercicio
+    if (contador >= exposiciones) {
+        await generarPausa(5000);
         cuadrado.style.display = "none";
-        numero.style.display = "none";
+        columnas[1].style.display = 'none';
         body.style.background = "url('../image/Fin ejercicios.png') no-repeat center center fixed";
-        return; // finalizar ejercicio
+        body.style.display = 'block';
+        return; 
     }
 
 }
