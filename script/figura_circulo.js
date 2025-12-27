@@ -48,8 +48,7 @@ form.addEventListener('submit', (e) => {
 async function alternarCirculo() {
     
     columnas[1].style.backgroundImage = "url('../image/figura_sola.png')";
-    const { left, top } = centroColumna(columnas[1]);
-
+    
     let contadorRojos = 0;
     while (contadorRojos < exposiciones) {
         await generarPausa(tiempoEspera);
@@ -58,7 +57,7 @@ async function alternarCirculo() {
         if (colorCirculo === 'red') {
             window.contadorRojos++;
         }
-        
+        const { left, top } = centroColumna(columnas[1]);
         dibujarCirculo({color: colorCirculo, left: left, top: top});
         // Ocultar el círculo
         await generarPausa(tiempoExposicion);

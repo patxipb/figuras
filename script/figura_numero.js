@@ -50,8 +50,7 @@ form.addEventListener('submit', (e) => {
 async function alternarNumero() {
 
     columnas[1].style.backgroundImage = "url('../image/figura_sola.png')";
-    const { left, top } = centroColumna(columnas[1]);
-
+    
     let contador = 0;
     while (contador < exposiciones) {
         await generarPausa(tiempoEspera);
@@ -69,6 +68,7 @@ async function alternarNumero() {
         numero.style.display = "none";
         pausarSonido();
         //setTimeout(() => reproducirSonido(), 50);
+        const { left, top } = centroColumna(columnas[1]);
         dibujarCuadrado({color: 'green', left: left, top: top});
     }
 
