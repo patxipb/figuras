@@ -8,7 +8,20 @@ disparo.volume = 0.5;
 
 window.disparo = disparo; // necesario si utils.js usa disparo como global
 
-const imagenesFondo = ['../image/rojo-verde 1.png', '../image/rojo-verde 2.png', '../image/rojo-verde 3.png', '../image/rojo-verde 4.png', '../image/rojo-verde 5.png', '../image/rojo-verde 6.png', '../image/rojo-verde 7.png', '../image/rojo-verde 8.png', '../image/rojo-verde 9.png', '../image/rojo-verde 10.png', '../image/rojo-verde 11.png', '../image/rojo-verde 12.png'];
+const imagenesFondo = [
+    '../image/rojo-verde/rojo-verde 1.png', 
+    '../image/rojo-verde/rojo-verde 2.png', 
+    '../image/rojo-verde/rojo-verde 3.png', 
+    '../image/rojo-verde/rojo-verde 4.png', 
+    '../image/rojo-verde/rojo-verde 5.png', 
+    '../image/rojo-verde/rojo-verde 6.png', 
+    '../image/rojo-verde/rojo-verde 7.png', 
+    '../image/rojo-verde/rojo-verde 8.png', 
+    '../image/rojo-verde/rojo-verde 9.png', 
+    '../image/rojo-verde/rojo-verde 10.png', 
+    '../image/rojo-verde/rojo-verde 11.png', 
+    '../image/rojo-verde/rojo-verde 12.png'
+];
 
 // --- NUEVO: formulario ---
 const form = document.getElementById('config-form');

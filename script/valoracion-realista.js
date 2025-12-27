@@ -1,10 +1,15 @@
-import { obtenerElementoAleatorio, generarPausa, reproducirSonido, pausarSonido} from './utils.js';
+import { 
+    obtenerElementoAleatorio, 
+    generarPausa, 
+    reproducirSonido, 
+    pausarSonido
+} from './utils.js';
 
 const botonMenu = document.getElementById('menu-boton');
-//const imagenExplicacion = document.getElementById('imagen-explicacion');
 const body = document.body;
-const disparo = document.getElementById('sonidoDisparo');
 const explicacion = document.getElementById('explicacion');
+const columnas = document.querySelectorAll('.columna');
+const disparo = document.getElementById('sonidoDisparo');
 disparo.volume = 0.5;
 
 window.disparo = disparo; // necesario si utils.js usa disparo como global
@@ -34,6 +39,8 @@ form.addEventListener('submit', (e) => {
     tiempoExposicion = valorExposicion === "" ? 2000 : Number(valorExposicion);
 
     form.style.display = "none";
+    explicacion.style.display = 'none';
+
     valorarPersona();
 });
 
@@ -49,20 +56,17 @@ async function valorarPersona(){
         await generarPausa(tiempoEspera);
         reproducirSonido();
         let fondo = obtenerElementoAleatorio(persona);
-        body.style.background = `url('${fondo}') no-repeat center center fixed`;
-        body.style.backgroundSize = "contain";
+        columnas[1].style.backgroundImage  = `url('${fondo}')`;
+        columnas[1].style.backgroundSize = "contain";
         await generarPausa(tiempoExposicion);
         pausarSonido();
-        body.style.backgroundImage = 'none';
-
+        columnas[1].style.backgroundImage = 'none';
     }
 
-
-
-
-    await generarPausa(10000);
-    imagenExplicacion.src = '../image/Fin ejercicios.png';
-    imagenExplicacion.style.display = 'block';
+    // Finalizar ejercicio
+    await generarPausa(5000);
+    body.style.background = "url('../image/Fin ejercicios.png') no-repeat center center fixed";
+    body.style.display = 'block';
     return;
 
 }
