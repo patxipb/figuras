@@ -58,6 +58,7 @@ async function alternarNumero() {
         reproducirSonido();
         var numeroAleatorio = Math.floor(Math.random() * 9) + 1;
         numero.innerText = numeroAleatorio;
+        const { left, top } = centroColumna(columnas[1]);
         numero.style.left = left; // Centrar horizontalmente
         numero.style.top = top; // Centrar verticalmente
         numero.style.display = "block";
@@ -68,7 +69,7 @@ async function alternarNumero() {
         numero.style.display = "none";
         pausarSonido();
         //setTimeout(() => reproducirSonido(), 50);
-        const { left, top } = centroColumna(columnas[1]);
+        
         dibujarCuadrado({color: 'green', left: left, top: top});
     }
 
