@@ -1,44 +1,74 @@
-import { dibujarCirculo, generarPausa, generarPausaAleatoria, reproducirSonido, pausarSonido, calculaColor,calculaAltura, calculaIzquierda, calculaTamanio} from './utils.js';
+import { 
+    dibujarCirculo, 
+    generarPausa, 
+    reproducirSonido, 
+    pausarSonido,
+    calculaColor,
+    calculaAltura, 
+    calculaTamanio,
+    centroColumna,
+    columnaAleatoria,
+} from './utils.js';
 
-const botonMenu = document.getElementById('menu-boton');
-const imagenExplicacion = document.getElementById('imagen-explicacion');
 const body = document.body;
+const imagenExplicacion = document.getElementById('imagen-explicacion');
+const columnas = document.querySelectorAll('.columna');
 const circulo = document.getElementById('circulo');
 const disparo = document.getElementById('sonidoDisparo');
 disparo.volume = 0.5;
 
 window.disparo = disparo; // necesario si utils.js usa disparo como global
 window.circulo = circulo; // igual para circulo
-window.contadorRojos = 0;
-window.ejercicioActual = 6;
-window.imagenExplicacion = imagenExplicacion;
-window.botonMenu = botonMenu;
-window.body = body;
+const form = document.getElementById('config-form');
 
+let exposiciones = 8;
+let tiempoEspera = 2000;      // valores por defecto
+let tiempoExposicion = 2000;
 
-const maxRojos = 8;
+// Cuando el usuario pulse "Iniciar"
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-botonMenu.addEventListener('click', ejercicio6);
+    const valorEspera = document.getElementById("tiempo-espera").value.trim();
+    const valorExposicion = document.getElementById("tiempo-exposicion").value.trim();
+
+    // Mantener los valores por defecto si el input está vacío
+    tiempoEspera = valorEspera === "" ? 2000 : Number(valorEspera);
+    tiempoExposicion = valorExposicion === "" ? 2000 : Number(valorExposicion);
+
+    form.style.display = "none";
+    imagenExplicacion.style.display = 'none';
+    
+    ejercicio6();
+});
 
 async function ejercicio6() {
-    botonMenu.style.display = 'none';
-    imagenExplicacion.style.display = 'none';
+    
+    columnas.forEach(col => {
+        col.style.backgroundImage = "url('../image/figura_sola.png')";
+    });
 
-    // Fondo
-    body.style.background = "url('../image/3_siluetas_blancas.jpg') no-repeat center center fixed";
-    body.style.backgroundSize = "contain";
+    let contadorRojos = 0;
 
-    while (window.contadorRojos < maxRojos) {
-        await generarPausaAleatoria(); // espera entre 3 y 5 segundos antes del siguiente
+    while (contadorRojos < exposiciones) {
+        await generarPausa(tiempoEspera);
         reproducirSonido();
         let colorCirculo = calculaColor();
-        if (colorCirculo === 'red') window.contadorRojos++;
-        dibujarCirculo({ color: colorCirculo, top: calculaAltura(), left: calculaIzquierda(), size: calculaTamanio() });
-        await generarPausa(1500); // visible 1,5 segundo
+        if (colorCirculo === 'red') contadorRojos++;
+        const columna = columnaAleatoria(columnas);
+        const { left, top } = centroColumna(columna);
+
+        dibujarCirculo({ color: colorCirculo, top: calculaAltura(), left: left, size: calculaTamanio() });
+        await generarPausa(tiempoExposicion);
         pausarSonido();
         circulo.style.display = 'none';
     }
-    if (window.contadorRojos >= maxRojos) {
+
+    if (contadorRojos >= exposiciones) {
+        await generarPausa(5000);
+        columnas.forEach(col => {
+            col.style.display = 'none';
+        });
         body.style.background = "url('../image/Fin ejercicios.png') no-repeat center center fixed";
         return; // finalizar ejercicio
     }

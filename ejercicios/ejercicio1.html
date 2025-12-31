@@ -8,8 +8,30 @@
 </head>
 <body>
     <div class="contenedor">
-        <img class="imagen-explicacion" id="imagen-explicacion" src = '../image/Ejercicio 1.png' alt="Imagen de explicación">
-        <button id="menu-boton" class="menu-boton">Inicio</button>
+
+        <div class="columna" data-columna="1"></div>
+        <div class="columna" data-columna="2"></div>
+        <div class="columna" data-columna="3"></div>
+
+        <img class="imagen-explicacion" id="imagen-explicacion" src = '../image/Ejercicio 1.png' alt="Imagen de explicación del ejercicio 1">
+        
+        <form id="config-form" method="POST" class="form-config">
+
+            <div class="campo">
+                <label for="tiempo-espera">Tiempo máximo de espera (ms):</label>
+                <input type="number" id="tiempo-espera" name="tiempo_espera" value="2000">
+            </div>
+            
+            <div class="campo">
+                <label for="tiempo-exposicion">Tiempo máximo de exposición (ms):</label>
+                <input type="number" id="tiempo-exposicion" name="tiempo_exposicion" value="2000">
+            </div>
+            
+            <div class="campo">
+                <input type="submit" id="menu-boton" class="menu-boton" value="Iniciar">
+            </div>
+        </form>
+
         <div class="circulo" id="circulo"></div>
     </div>
 

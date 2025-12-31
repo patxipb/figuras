@@ -10,9 +10,7 @@ import {
     centroColumna
 } from "./utils.js";
 
-const botonMenu = document.getElementById('menu-boton');
 const explicacion = document.getElementById('explicacion');
-const body = document.body;
 const circulo = document.getElementById('circulo');
 const circulo2 = document.getElementById('circulo2');
 const disparo = document.getElementById('sonidoDisparo');
@@ -22,10 +20,6 @@ disparo.volume = 0.5;
 window.disparo = disparo; // necesario si utils.js usa disparo como global
 window.circulo = circulo; // igual para circulo
 window.circulo2 = circulo2;
-window.botonMenu = botonMenu;
-window.body = body;
-
-let contadorRojos = 0;
 
 const form = document.getElementById('config-form');
 
@@ -58,6 +52,8 @@ async function dibujarCirculosAleatorios() {
     columnas.forEach(col => {
         col.style.backgroundImage = "url('../image/figura_sola.png')";
     });
+
+    let contadorRojos = 0;
 
     while (contadorRojos < exposiciones) {
         await generarPausa(tiempoEspera);
