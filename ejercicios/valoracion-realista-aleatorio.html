@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ejercicios.css">
+    <title>Ejercicio valoración con figuras realistas en posiciones aleatorias</title>
+</head>
+<body>
+    <div class="contenedor">
+
+        <div class="columna" data-columna="1"></div>
+        <div class="columna" data-columna="2"></div>
+        <div class="columna" data-columna="3"></div>
+
+        <h2 id="explicacion" class="explicacion"> Cuando aparezca una silueta armada (arma de fuego o cuchillo) responder con los disparos que indique el instructor.</h2>
+
+        <form id="config-form" method="POST" class="form-config">
+            
+            <div class="campo">
+                <label for="tiempo-espera">Veces que aparece una amenaza:</label>
+                <input type="number" id="exposiciones" name="exposiciones" value="10">
+            </div>
+
+            <div class="campo">
+                <label for="tiempo-espera">Tiempo máximo de espera (ms):</label>
+                <input type="number" id="tiempo-espera" name="tiempo_espera" value="2000">
+            </div>
+
+            <div class="campo">
+                <label for="tiempo-exposicion">Tiempo máximo de exposición (ms):</label>
+                <input type="number" id="tiempo-exposicion" name="tiempo_exposicion" value="2000">
+            </div>
+
+            <div class="campo">
+                <input type="submit" id="menu-boton" class="menu-boton" value="Iniciar">
+            </div>
+        </form>
+    </div>
+
+    <audio id="sonidoDisparo" preload="auto">
+        <source src="../mp3/9mm-pistol-shoot.mp3" type="audio/mpeg">
+    </audio>
+
+    <a href="../index.html" class="boton-inicio">
+        <img src="../image/home-button-icon.png" alt="Inicio" />
+    </a>
+
+    <script type="module" src="../script/valoracion-realista-aleatorio.js"></script>
+</body>
+</html>

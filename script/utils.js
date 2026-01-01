@@ -248,6 +248,22 @@ export function obtenerElementoAleatorio(array) {
     return array[indiceAleatorio];
 }
 
+export function obtenerElementoDistinto(array, elementosEvitar) {
+    if (!Array.isArray(array) || array.length === 0) {
+        throw new Error("Debes pasar un array con al menos un elemento.");
+    }
+
+    if (!Array.isArray(elementosEvitar)) {
+        elementosEvitar = [elementosEvitar];
+    }
+
+    const disponibles = array.filter(item => !elementosEvitar.includes(item));
+    if (disponibles.length === 0) {
+        throw new Error("No hay elementos disponibles que no estén en la lista de elementos a evitar.");
+    }
+
+    return obtenerElementoAleatorio(disponibles);
+}
 
 // Devuelve una columna aleatoria del NodeList
 export function columnaAleatoria(columnas) {
