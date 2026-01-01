@@ -18,8 +18,6 @@ const columnas = document.querySelectorAll('.columna');
 disparo.volume = 0.5;
 
 window.disparo = disparo; // necesario si utils.js usa disparo como global
-window.circulo = circulo; // igual para circulo
-window.circulo2 = circulo2;
 
 const form = document.getElementById('config-form');
 
@@ -84,13 +82,12 @@ async function dibujarCirculosAleatorios() {
 
 
     // Finalizar ejercicio
-    if (contadorRojos >= exposiciones) {
-        await generarPausa(5000);
-        columnas.forEach(col => {
-            col.style.display = 'none';
-        });
-        body.style.background = "url('../image/Fin ejercicios.png') no-repeat center center fixed";
-        body.style.display = 'block';
-        return; 
-    }
+    await generarPausa(5000);
+    columnas.forEach(col => {
+        col.style.display = 'none';
+    });
+    body.style.background = "url('../image/Fin ejercicios.png') no-repeat center center fixed";
+    body.style.display = 'block';
+    return; 
+
 }

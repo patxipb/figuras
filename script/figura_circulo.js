@@ -8,7 +8,6 @@ import {
 } from './utils.js';
 
 const body = document.body;
-const botonMenu = document.getElementById('menu-boton');
 const explicacion = document.getElementById('explicacion');
 const circulo = document.getElementById('circulo');
 const columnas = document.querySelectorAll('.columna');
@@ -16,9 +15,6 @@ const disparo = document.getElementById('sonidoDisparo');
 disparo.volume = 0.5;
 
 window.disparo = disparo; // necesario si utils.js usa disparo como global
-window.circulo = circulo; // igual para circulo
-window.botonMenu = botonMenu;
-window.body = body;
 
 const form = document.getElementById('config-form');
 
@@ -66,12 +62,10 @@ async function alternarCirculo() {
     }     
 
     // Finalizar ejercicio
-    if (contadorRojos >= exposiciones) {
-        await generarPausa(5000);
-        columnas[1].style.display = 'none';
-        body.style.background = "url('../image/Fin ejercicios.png') no-repeat center center fixed";
-        body.style.display = 'block';
-        return; 
-    }
+    await generarPausa(5000);
+    columnas[1].style.display = 'none';
+    body.style.background = "url('../image/Fin ejercicios.png') no-repeat center center fixed";
+    body.style.display = 'block';
+    return; 
 }
 

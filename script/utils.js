@@ -263,12 +263,13 @@ export function centroColumna(col) {
     };
 }
 
-// Devuelve una columna aleatoria distinta de la columna pasada
-export function columnaAleatoriaDiferente(columnas, columnaActual) {
-    if (columnas.length < 2) return columnaActual;
-    let columna2;
-    do {
-        columna2 = columnaAleatoria(columnas);
-    } while (columna2 === columnaActual);
-    return columna2;
+// Devuelve una columna aleatoria distinta de las columnas pasadas en el array a evitar
+export function columnaAleatoriaDiferente(columnas, columnasEvitar) {
+    // Si no es array, convertirlo en array
+    if (!Array.isArray(columnasEvitar)) {
+        columnasEvitar = [columnasEvitar];
+    }
+    const disponibles = Array.from(columnas).filter(col => !columnasEvitar.includes(col));
+    if (disponibles.length === 0) return columnas[0];
+    return columnaAleatoria(disponibles);
 }

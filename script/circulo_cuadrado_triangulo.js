@@ -34,11 +34,6 @@ const triangulos = [
     document.getElementById('triangulo3')
 ];
 
-// Para acceso desde utils si fuera necesario
-window.circulos = circulos;
-window.cuadrados = cuadrados;
-window.triangulos = triangulos;
-
 // Sonido
 const disparo = document.getElementById('sonidoDisparo');
 disparo.volume = 0.5;
@@ -125,13 +120,12 @@ async function circuloCuadradoTriangulo() {
     contadorRojos = contadorRojosRef.value;
 
     // Fin del ejercicio
-    if (contadorRojos >= exposiciones) {
-        await generarPausa(5000);
-        columnas.forEach(col => {
-            col.style.display = 'none';
-        });
-        body.style.background = "url('../image/Fin ejercicios.png') no-repeat center center fixed";
-        body.style.display = 'block';
-        return;
-    }
+    await generarPausa(5000);
+    columnas.forEach(col => {
+        col.style.display = 'none';
+    });
+    body.style.background = "url('../image/Fin ejercicios.png') no-repeat center center fixed";
+    body.style.display = 'block';
+    return;
+
 }

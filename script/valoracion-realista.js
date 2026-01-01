@@ -5,7 +5,6 @@ import {
     pausarSonido
 } from './utils.js';
 
-const botonMenu = document.getElementById('menu-boton');
 const body = document.body;
 const explicacion = document.getElementById('explicacion');
 const columnas = document.querySelectorAll('.columna');
@@ -45,8 +44,6 @@ form.addEventListener('submit', (e) => {
 });
 
 async function valorarPersona(){
-    botonMenu.style.display = 'none';
-    explicacion.style.display = 'none';
 
     let persona = Math.random() < 0.5 ? persona1 : persona2;
     let amenaza = 0;

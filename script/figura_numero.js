@@ -7,7 +7,6 @@ import {
 } from "./utils.js";
 
 const body = document.body;
-const botonMenu = document.getElementById('menu-boton');
 const explicacion = document.getElementById('explicacion');
 const columnas = document.querySelectorAll('.columna');
 const disparo = document.getElementById('sonidoDisparo');
@@ -17,10 +16,6 @@ window.disparo = disparo; // necesario si utils.js usa disparo como global
 const cuadrado = document.getElementById("cuadrado");
 cuadrado.style.borderRadius = "8px";
 var numero = document.getElementById("numeroFlotante");
-
-window.body = body;
-window.cuadrado = cuadrado;
-window.botonMenu = botonMenu;
 
 const form = document.getElementById('config-form');
 

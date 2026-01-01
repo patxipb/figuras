@@ -172,8 +172,29 @@ body {
     font-size: 1em;
 }
 
+/* Estilo para el select de color objetivo */
+.form-config select {
+    font-size: 1em;
+    padding: 0.4em 0.6em;
+    border-radius: 0.5em;
+    border: 1px solid #ccc;
+    background: #fff;
+    transition: box-shadow 0.2s;
+}
+
+.form-config select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #3498db44;
+}
+
+/* Efecto hover para las opciones del select */
+.form-config select option {
+    font-size: 1em;
+    transition: font-size 0.2s;
+}
+
 /* ===============================
-   TEXTO EXPLICATIVO
+    TEXTO EXPLICATIVO
 ================================ */
 
 .explicacion {
@@ -224,3 +245,4 @@ body {
     overflow: hidden;
     /* display: none; */
 }
+

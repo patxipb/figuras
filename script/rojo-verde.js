@@ -26,7 +26,7 @@ const imagenesFondo = [
 // --- NUEVO: formulario ---
 const form = document.getElementById('config-form');
 
-let tiempoEspera = 4950;      // valores por defecto
+let tiempoEspera = 2000;      // valores por defecto
 let tiempoExposicion = 2000;
 
 // Cuando el usuario pulse "Iniciar"
@@ -37,16 +37,15 @@ form.addEventListener('submit', (e) => {
     const valorExposicion = document.getElementById("tiempo-exposicion").value.trim();
 
     // Mantener los valores por defecto si el input está vacío
-    tiempoEspera = valorEspera === "" ? 4950 : Number(valorEspera);
+    tiempoEspera = valorEspera === "" ? 2000 : Number(valorEspera);
     tiempoExposicion = valorExposicion === "" ? 2000 : Number(valorExposicion);
 
     form.style.display = "none";
+    explicacion.style.display = 'none';
     rojoVerde();
 });
 
 async function rojoVerde() {
-    botonMenu.style.display = 'none';
-    explicacion.style.display = 'none';
 
     for (let i = 0; i < 13; i++) {
         await generarPausa(tiempoEspera);
@@ -60,7 +59,7 @@ async function rojoVerde() {
 
     }
 
-    await generarPausa(10000);
+    await generarPausa(5000);
     imagenExplicacion.src = '../image/Fin ejercicios.png';
     imagenExplicacion.style.display = 'block';
     return;

@@ -16,7 +16,7 @@ const disparo = document.getElementById('sonidoDisparo');
 disparo.volume = 0.5;
 
 window.disparo = disparo; // necesario si utils.js usa disparo como global
-window.circulo = circulo; // igual para circulo
+
 const form = document.getElementById('config-form');
 
 let exposiciones = 8;
@@ -60,14 +60,12 @@ async function ejercicio5() {
         circulo.style.display = 'none';
     }
 
-    if (contadorRojos >= exposiciones) {
-        await generarPausa(5000);
-        columnas.forEach(col => {
-            col.style.display = 'none';
-        });
-        await generarPausa(5000).then(() => {
-            window.location.href = 'ejercicio6.html';});
-        return;
-    }
-
+    await generarPausa(5000);
+    columnas.forEach(col => {
+        col.style.display = 'none';
+    });
+    await generarPausa(5000).then(() => {
+        window.location.href = 'ejercicio6.html';});
+    return;
+    
 }
