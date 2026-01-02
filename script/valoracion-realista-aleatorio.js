@@ -54,50 +54,66 @@ async function personaAleatoria(){
         
         await generarPausa(tiempoEspera);
         
-        const columna = columnaAleatoria(columnas);
-        const columna2 = columnaAleatoriaDiferente(columnas, columna);
-        const columna3 = columnaAleatoriaDiferente(columnas, [columna, columna2]);
-        
-        reproducirSonido();
-        
-        let esAmenaza = Math.random() < 0.3; // 30% de probabilidad de que sea una amenaza
-        let fondo = esAmenaza ? obtenerElementoAleatorio(imagenAmenaza) : obtenerElementoAleatorio(persona);
-        
-        if (esAmenaza) contadorAmenaza++;
-        
-        columna.style.backgroundImage  = `url('${fondo}')`;
-        columna.style.display = 'block';
-        columna.style.backgroundSize = "contain";
 
-        if (Math.random() < 0.5) {
+        // Inicializar todas las columnas en blanco
+        columnas.forEach(col => {
+            col.style.backgroundImage = '';
+            col.style.backgroundColor = 'white';
+            col.style.display = 'block';
+        });
+
+        reproducirSonido();
+
+        // Seleccionar columnas para mostrar imagen
+        const columna = columnaAleatoria(columnas);
+        let columnasUsadas = [columna];
+        let esAmenaza = Math.random() < 0.3;
+        let fondo = esAmenaza ? obtenerElementoAleatorio(imagenAmenaza) : obtenerElementoAleatorio(persona);
+        if (esAmenaza) contadorAmenaza++;
+        columna.style.backgroundImage = `url('${fondo}')`;
+        columna.style.backgroundColor = 'transparent';
+        columna.style.backgroundSize = "cover";
+
+        // Segunda columna
+        let mostrarColumna2 = Math.random() < 0.5;
+        if (mostrarColumna2) {
+            const columna2 = columnaAleatoriaDiferente(columnas, columna);
+            columnasUsadas.push(columna2);
             let esAmenaza2 = Math.random() < 0.5;
             if (esAmenaza2) contadorAmenaza++;
             let fondo2 = esAmenaza2 ? obtenerElementoDistinto(imagenAmenaza, [fondo]) : obtenerElementoDistinto(persona, [fondo]);
-            columna2.style.backgroundImage  = `url('${fondo2}')`;
-            columna2.style.display = 'block';
-            columna2.style.backgroundSize = "contain";
+            columna2.style.backgroundImage = `url('${fondo2}')`;
+            columna2.style.backgroundColor = 'transparent';
+            columna2.style.backgroundSize = "cover";
 
-            if (Math.random() < 0.5) {
+            // Tercera columna
+            let mostrarColumna3 = Math.random() < 0.5;
+            if (mostrarColumna3) {
+                const columna3 = columnaAleatoriaDiferente(columnas, [columna, columna2]);
+                columnasUsadas.push(columna3);
                 let esAmenaza3 = Math.random() < 0.5;
                 if (esAmenaza3) contadorAmenaza++;
-                let fondo3 = esAmenaza3 ? obtenerElementoAleatorio(imagenAmenaza) : obtenerElementoAleatorio(persona);
-                columna3.style.backgroundImage  = `url('${fondo3}')`;
-                columna3.style.display = 'block';
-                columna3.style.backgroundSize = "contain";
+                let fondo3 = esAmenaza3 ? obtenerElementoDistinto(imagenAmenaza, [fondo, fondo2]) : obtenerElementoDistinto(persona, [fondo, fondo2]);
+                columna3.style.backgroundImage = `url('${fondo3}')`;
+                columna3.style.backgroundColor = 'transparent';
+                columna3.style.backgroundSize = "cover";
             }
-
-
         }
 
         await generarPausa(tiempoExposicion);
-        pausarSonido(); 
+        pausarSonido();
+        // Limpiar columnas (volver a blanco)
         columnas.forEach(col => {
-            col.style.display = 'none';
+            col.style.backgroundImage = '';
+            col.style.backgroundColor = 'white';
         });
 
     }
 
     await generarPausa(5000);
+    columnas.forEach(col => {
+            col.style.display='none';
+        });
     body.style.background = "url('../image/Fin ejercicios.png') no-repeat center center fixed";
     return; // finalizar ejercicio
 
