@@ -53,12 +53,12 @@ async function valorarPersona(){
         reproducirSonido();
         let fondo = obtenerElementoAleatorio(persona);
         columnas[1].style.backgroundImage  = `url('${fondo}')`;
-        columnas[1].style.backgroundSize = "contain";
+        columnas[1].style.backgroundColor = 'transparent';
+        columnas[1].style.backgroundSize = "cover";
         await generarPausa(tiempoExposicion);
         pausarSonido();
         columnas[1].style.backgroundImage = 'none';
-        columnas[1].style.backgroundColor = 'transparent';
-        columnas[1].style.backgroundSize = "cover";
+        
     }
 
     // Finalizar ejercicio
