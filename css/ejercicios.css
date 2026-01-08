@@ -240,9 +240,13 @@ body {
     /* background-image: url('../image/figura_sola.png'); */
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
 
     overflow: hidden;
     /* display: none; */
+}
+
+.columna .realista{
+    background-size: cover;
 }
 
