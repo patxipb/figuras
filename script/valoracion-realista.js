@@ -46,7 +46,6 @@ form.addEventListener('submit', (e) => {
 async function valorarPersona(){
 
     let persona = Math.random() < 0.5 ? persona1 : persona2;
-    let amenaza = 0;
     
     for (let i = 0; i < exposiciones; i++) {
     //while (amenaza < exposiciones) 
@@ -58,6 +57,8 @@ async function valorarPersona(){
         await generarPausa(tiempoExposicion);
         pausarSonido();
         columnas[1].style.backgroundImage = 'none';
+        columnas[1].style.backgroundColor = 'transparent';
+        columnas[1].style.backgroundSize = "cover";
     }
 
     // Finalizar ejercicio
