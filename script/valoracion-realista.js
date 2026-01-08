@@ -50,11 +50,13 @@ async function valorarPersona(){
     for (let i = 0; i < exposiciones; i++) {
     //while (amenaza < exposiciones) 
         await generarPausa(tiempoEspera);
-        reproducirSonido();
+        
         let fondo = obtenerElementoAleatorio(persona);
         columnas[1].style.backgroundImage  = `url('${fondo}')`;
         columnas[1].style.backgroundColor = 'transparent';
         columnas[1].style.backgroundSize = "cover";
+        reproducirSonido();
+
         await generarPausa(tiempoExposicion);
         pausarSonido();
         columnas[1].style.backgroundImage = '';

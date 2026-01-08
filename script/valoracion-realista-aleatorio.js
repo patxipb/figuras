@@ -62,8 +62,6 @@ async function personaAleatoria(){
             col.style.display = 'block';
         });
 
-        reproducirSonido();
-
         // Seleccionar columnas para mostrar imagen
         const columna = columnaAleatoria(columnas);
         let columnasUsadas = [columna];
@@ -73,6 +71,8 @@ async function personaAleatoria(){
         columna.style.backgroundImage = `url('${fondo}')`;
         columna.style.backgroundColor = 'transparent';
         columna.style.backgroundSize = "cover";
+
+        reproducirSonido();
 
         // Segunda columna
         let mostrarColumna2 = Math.random() < 0.5;
