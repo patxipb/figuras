@@ -57,7 +57,8 @@ async function valorarPersona(){
         columnas[1].style.backgroundSize = "cover";
         await generarPausa(tiempoExposicion);
         pausarSonido();
-        columnas[1].style.backgroundImage = 'none';
+        columnas[1].style.backgroundImage = '';
+        columnas[1].style.backgroundColor = 'white';
         
     }
 
